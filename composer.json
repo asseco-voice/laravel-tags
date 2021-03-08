@@ -1,33 +1,33 @@
 {
-    "name": "asseco-voice/laravel-tags",
-    "description": "Laravel support for tags",
-    "type": "library",
-    "license": "MIT",
-    "require": {
-        "php": "^7.4 || ^8.0",
-        "laravel/framework": "^8.0"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "9.4",
-        "mockery/mockery": "^1.3.1",
-        "fakerphp/faker": "^1.9.1",
-        "orchestra/testbench": "^6.0"
-    },
-    "autoload": {
-        "psr-4": {
-            "Asseco\\Tags\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Asseco\\Tags\\Tests\\": "tests"
-        }
-    },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Asseco\\Tags\\TagsServiceProvider"
-            ]
-        }
+  "name": "asseco-voice/laravel-tags",
+  "description": "Laravel support for tags",
+  "type": "library",
+  "license": "MIT",
+  "require": {
+    "php": "^7.4 || ^8.0",
+    "laravel/framework": "^8.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "9.4",
+    "mockery/mockery": "^1.3.1",
+    "fakerphp/faker": "^1.9.1",
+    "orchestra/testbench": "^6.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Asseco\\Tags\\": "src/"
     }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Asseco\\Tags\\Tests\\": "tests"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Asseco\\Tags\\TagsServiceProvider"
+      ]
+    }
+  }
 }
