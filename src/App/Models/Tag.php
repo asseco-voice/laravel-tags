@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Asseco\Tags\Models;
+namespace Asseco\Tags\App\Models;
 
 use Asseco\Tags\App\Traits\Taggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
