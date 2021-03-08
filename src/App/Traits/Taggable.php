@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Asseco\Tags\Traits;
+namespace Asseco\Tags\App\Traits;
 
 use Asseco\Tags\Models\Tag;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
