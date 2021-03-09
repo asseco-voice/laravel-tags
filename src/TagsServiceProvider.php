@@ -13,7 +13,7 @@ class TagsServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/tags.php', 'tags');
+        $this->mergeConfigFrom(__DIR__ . '/../config/asseco-tags.php', 'asseco-tags');
         $this->loadMigrationsFrom(__DIR__ . '/../migrations');
         $this->loadRoutesFrom(__DIR__ . '/../routes/api.php');
     }
@@ -23,6 +23,6 @@ class TagsServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $this->publishes([__DIR__ . '/../config/tags.php' => config_path('tags.php')]);
+        $this->publishes([__DIR__ . '/../config/asseco-tags.php' => config_path('asseco-tags.php')]);
     }
 }
