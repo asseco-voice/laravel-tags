@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Asseco\Tags\Models\Tag;
+use Asseco\Tags\App\Models\Tag;
 use Asseco\Tags\App\Traits\Taggable;
 
 return [

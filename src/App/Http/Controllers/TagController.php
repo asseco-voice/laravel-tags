@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Asseco\Tags\App\Http\Controllers;
 
 use Asseco\Tags\App\Http\Requests\TagRequest;
@@ -27,7 +29,9 @@ class TagController extends Controller
      */
     public function store(TagRequest $request): JsonResponse
     {
-        return response()->json($request);
+        $tag = Tag::query()->create($request->all());
+
+        return response()->json($tag);
     }
 
     /**
@@ -39,6 +43,20 @@ class TagController extends Controller
     public function show(Tag $tag): JsonResponse
     {
         return response()->json($tag);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param TagRequest $request
+     * @param Tag $tag
+     * @return JsonResponse
+     */
+    public function update(TagRequest $request, Tag $tag): JsonResponse
+    {
+        $tag->update($request->validated());
+
+        return response()->json($tag->refresh());
     }
 
     /**

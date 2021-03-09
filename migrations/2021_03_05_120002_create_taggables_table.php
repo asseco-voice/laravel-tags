@@ -16,16 +16,9 @@ class CreateTaggablesTable extends Migration
     public function up(): void
     {
         Schema::create('taggables', function (Blueprint $table) {
-            // Columns
             $table->integer('tag_id')->unsigned();
             $table->morphs('taggable');
             $table->timestamps();
-
-            #$table->foreignId('taggable_id')->constrained()->cascadeOnDelete();
-            // Indexes
-            $table->unique(['tag_id', 'taggable_id', 'taggable_type'], 'taggables_ids_type_unique');
-            $table->foreign('tag_id')->references('id')->on('tags')
-                  ->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
