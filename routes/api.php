@@ -1,7 +1,6 @@
 <?php
 
 use Asseco\Tags\App\Http\Controllers\TagController;
-
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,5 +16,5 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::prefix('api')->middleware('api')->group(function () {
-    Route::apiResource('tags', TagsController::class);
+    Route::apiResource('tags', TagController::class);
 });

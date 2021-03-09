@@ -13,7 +13,7 @@ class TagRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -24,7 +24,7 @@ class TagRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|strip_tags|max:10',
+            'name'  => 'required|string|strip_tags|max:10|unique:tags,name',
             'color' => 'nullable|string|max:30',
         ];
     }
