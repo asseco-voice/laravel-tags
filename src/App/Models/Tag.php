@@ -23,6 +23,6 @@ class Tag extends Model
 
     public function entries(string $class): MorphToMany
     {
-        return $this->morphedByMany($class, 'taggable');
+        return $this->morphedByMany($class, 'taggable')->withTimestamps();
     }
 }
