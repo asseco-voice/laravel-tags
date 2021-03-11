@@ -15,7 +15,6 @@ class Tag extends Model
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
-
     protected static function newFactory()
     {
         return TagFactory::new();
