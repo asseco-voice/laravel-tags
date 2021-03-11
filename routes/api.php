@@ -17,5 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('api')->middleware('api')->group(function () {
     Route::apiResource('tags', TagController::class);
 
-    Route::apiResource('taggables/{id}', [TaggableController::class])->only('store', 'destroy');
+    Route::post('taggables/{modelId}', [TaggableController::class, 'store'])->name('taggables.store');
+    Route::delete('taggables/{id}', [TaggableController::class, 'destroy'])->name('taggables.destroy');
 });

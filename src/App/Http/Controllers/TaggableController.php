@@ -17,16 +17,15 @@ class TaggableController extends Controller
      * @param Request $request
      * @return JsonResponse
      */
-    public function store(Request $request): JsonResponse
+    public function store(Request $request, $modelId): JsonResponse
     {
         $model = $request->get('model');
-        $modelId = $request->get('id');
         $tags = $request->get('tags');
 
-        $tag = $model::findOrFail($modelId);
-        $tag->tags()->attach($tags);
+        $record = $model::where('id', $modelId)->first();
+        optional($record->tags())->sync($tags);
 
-        return response()->json($tag->with('tags'));
+        return response()->json($record);
     }
 
     /**
