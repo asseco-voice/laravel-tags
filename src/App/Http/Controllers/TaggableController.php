@@ -29,7 +29,6 @@ class TaggableController extends Controller
         return response()->json($tag->with('tags'));
     }
 
-
     /**
      * Remove the specified resource from storage.
      *
