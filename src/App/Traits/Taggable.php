@@ -16,9 +16,8 @@ trait Taggable
     }
 
     /**
-     *
      * Throws exception if form exists and validate doesnt pass
-     * Returns Validated data array
+     * Returns Validated data array.
      *
      * @param array $tagData
      * @return array
@@ -29,6 +28,7 @@ trait Taggable
         if (empty($tagData)) {
             return $tagData;
         }
+
         return $this->sync($tagData);
     }
 
@@ -57,6 +57,5 @@ trait Taggable
             }
             $class->tags()->attach($id);
         }
-
     }
 }
