@@ -20,7 +20,7 @@ class Tag extends Model
         return TagFactory::new();
     }
 
-    public function entries(string $class): MorphToMany
+    public function models(string $class): MorphToMany
     {
         return $this->morphedByMany($class, 'taggable')->withTimestamps();
     }
