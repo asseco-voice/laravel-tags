@@ -4,7 +4,7 @@ namespace Asseco\Tags\App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class TagRequest extends FormRequest
+class ModelTagRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,10 @@ class TagRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'  => 'required|string|max:100|unique:tags,name|strip_tags',
-            'color' => 'nullable|string|max:30',
+            'model'     => 'required|string',
+            'model_id'  => 'required',
+            'tag_ids'   => 'required|array',
+            'tag_ids.*' => 'exists:tags,id',
         ];
     }
 }

@@ -2,6 +2,13 @@
   "name": "asseco-voice/laravel-tags",
   "description": "Laravel support for tags",
   "type": "library",
+    "keywords": [
+        "php",
+        "laravel",
+        "tags",
+        "microservices",
+        "database"
+  ],
   "license": "MIT",
   "require": {
     "php": "^7.4 || ^8.0",
