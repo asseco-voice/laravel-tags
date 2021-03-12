@@ -22,7 +22,7 @@ class TagFactory extends Factory
     public function definition()
     {
         return [
-            'name'  => $this->faker->sentence($nbWords = 3, $variableNbWords = true),
+            'name'  => $this->faker->sentence(3, true),
             'color' => $this->faker->hexColor,
         ];
     }
