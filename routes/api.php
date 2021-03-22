@@ -1,6 +1,5 @@
 <?php
 
-use Asseco\Tags\App\Http\Controllers\ModelTagController;
 use Asseco\Tags\App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('api')
     ->middleware('api')
     ->group(function () {
+
         Route::apiResource('tags', TagController::class);
 
-        Route::post('model-tags', [ModelTagController::class, 'store'])->name('model-tags.store');
     });
