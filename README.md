@@ -2,10 +2,7 @@
 
 # Tags
 
-Purpose of this repository is to provide tag support for any Laravel model. 
-
-**Tag** can be added on any model, without the need to add new attributes 
-to a DB model.
+Purpose of this repository is to enable tags for any Laravel model.
 
 ## Installation
 
@@ -14,50 +11,24 @@ Service provider will be registered automatically.
 
 ## Setup
 
-In order to use this repository the following must be done:
+In order to use the package, migrate the tables with ``artisan migrate``
+and add `Taggable` trait to model you'd like to have tag support on.
 
-1. Each model which requires custom field support MUST use ``Taggable`` trait. 
-1. Run ``php artisan migrate`` to migrate package tables
-2. On each model in store method in Controller add this lines
-   ``
-   $type = XXXX::query()->create(Arr::except($request->all(), 'tags'));
-   $type->tags()->sync(Arr::get($request->all(), 'tags'));
-   ``
-## RestAPI calls
+Standard CRUD endpoints are exposed for tag administration. Due to the fact that 
+tags are a morph relation, you have to provide your own controllers for attaching/detaching 
+those tags to taggable models.
 
-1. get all tags
-```
-GET /api/tags
-```
-2. add new tag
-```
-POST /api/tags
+Example:
+
+```php
+Route::post('models/{model}/tags', [ModelTagController::class, 'store']);
+
+public function store(Request $request, Model $model): JsonResponse
 {
-    "name": "my tag",
-    "color": "#eee"
+    $ids = Arr::get($request->validated(), 'tag_ids', []);
+
+    $model->tags()->sync($ids);
+
+    return response()->json('success');
 }
 ```
-3. edit tag {id}
-```
-PUT /api/tags/{id}
-{
-    "name": "my tag",
-    "color": "#eee"
-}
-```
-4. delete tag {id}
-```
-DELETE /api/tags/{id}
-```
-
-5. add/update tags on some model
-```
-POST api/{model}
-{
-    ....
-    "tags": [5,2, ...],
-    ...
-}
-```
-
-// TODO: ER model
