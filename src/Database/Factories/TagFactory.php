@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Asseco\Tags\Database\Factories;
 
 use Asseco\Tags\App\Models\Tag;
