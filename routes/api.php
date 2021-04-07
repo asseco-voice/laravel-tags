@@ -1,6 +1,7 @@
 <?php
 
 use Asseco\Tags\App\Http\Controllers\TagController;
+use Asseco\Tags\App\Http\Controllers\TagManyController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,4 +19,6 @@ Route::prefix('api')
     ->middleware('api')
     ->group(function () {
         Route::apiResource('tags', TagController::class);
+
+        Route::post('tag-many', [TagManyController::class, 'store'])->name('tag-many.store');
     });
