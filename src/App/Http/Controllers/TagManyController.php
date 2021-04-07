@@ -30,8 +30,8 @@ class TagManyController extends Controller
         // Assume the namespace was forwarded if no morph map was found
         $modelClass = Relation::getMorphedModel($modelString) ?: $modelString;
 
-        if (!class_exists($modelClass) || !$modelClass instanceof Model) {
-            throw new Exception("'$modelString' is not recognized as an existing Eloquent model in this app.");
+        if (!class_exists($modelClass)) {
+            throw new Exception("'$modelString' is not recognized as an existing model in this app.");
         }
 
         if (!method_exists($modelClass, 'tags')) {
