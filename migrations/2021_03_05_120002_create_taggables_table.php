@@ -21,7 +21,7 @@ class CreateTaggablesTable extends Migration
             $table->morphs('taggable');
             $table->timestamps();
 
-            $table->unique('tag_id', 'taggable_type', 'taggable_id');
+            $table->unique(['tag_id', 'taggable_type', 'taggable_id']);
         });
     }
 
