@@ -20,7 +20,7 @@ class CreateTaggablesTable extends Migration
             $table->integer('tag_id')->unsigned();
             $table->morphs('taggable');
             $table->timestamps();
-            
+
             $table->unique('tag_id', 'taggable_type', 'taggable_id');
         });
     }
