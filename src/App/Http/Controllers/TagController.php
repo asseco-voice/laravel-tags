@@ -29,7 +29,7 @@ class TagController extends Controller
      */
     public function store(TagRequest $request): JsonResponse
     {
-        $tag = Tag::query()->create($request->all());
+        $tag = Tag::query()->create($request->validated());
 
         return response()->json($tag);
     }
