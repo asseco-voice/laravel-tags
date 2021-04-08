@@ -7,6 +7,7 @@ namespace Asseco\Tags\App\Http\Controllers;
 use Asseco\Tags\App\Http\Requests\TagManyRequest;
 use Asseco\Tags\App\Traits\Taggable;
 use Exception;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Log;
@@ -27,6 +28,7 @@ class TagManyController extends Controller
         $modelString = $validated['model'];
 
         // Assume the namespace was forwarded if no morph map was found
+        /** @var Model $modelClass */
         $modelClass = Relation::getMorphedModel($modelString) ?: $modelString;
 
         if (!class_exists($modelClass)) {
