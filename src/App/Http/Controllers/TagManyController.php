@@ -28,10 +28,9 @@ class TagManyController extends Controller
         $modelString = $validated['model'];
 
         // Assume the namespace was forwarded if no morph map was found
-        /** @var Model $modelClass */
         $modelClass = Relation::getMorphedModel($modelString) ?: $modelString;
 
-        if (!class_exists($modelClass)) {
+        if (!class_exists($modelClass) || !is_subclass_of($modelClass, Model::class)) {
             throw new Exception("'$modelString' is not recognized as an existing model in this app.");
         }
 
