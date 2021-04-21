@@ -24,7 +24,7 @@ class TagFactory extends Factory
     public function definition()
     {
         return [
-            'name'  => $this->faker->unique()->sentence(3, true),
+            'name'  => substr($this->faker->unique()->sentence(3, true), 0, 50),
             'color' => $this->faker->hexColor,
         ];
     }
