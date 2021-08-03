@@ -11,6 +11,15 @@ use Illuminate\Http\JsonResponse;
 
 class TagController extends Controller
 {
+    public Tag $tag;
+
+    public function __construct()
+    {
+        $model = config('asseco-tags.tag_model');
+
+        $this->tag = new $model;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +27,7 @@ class TagController extends Controller
      */
     public function index(): JsonResponse
     {
-        return response()->json(Tag::all());
+        return response()->json($this->tag::all());
     }
 
     /**
@@ -29,7 +38,7 @@ class TagController extends Controller
      */
     public function store(TagRequest $request): JsonResponse
     {
-        $tag = Tag::query()->create($request->validated());
+        $tag = $this->tag::query()->create($request->validated());
 
         return response()->json($tag);
     }

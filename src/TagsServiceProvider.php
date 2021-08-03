@@ -13,8 +13,12 @@ class TagsServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->loadMigrationsFrom(__DIR__ . '/../migrations');
+        $this->mergeConfigFrom(__DIR__ . '/../config/asseco-tags.php', 'asseco-tags');
         $this->loadRoutesFrom(__DIR__ . '/../routes/api.php');
+
+        if (config('asseco-tags.runs_migrations')) {
+            $this->loadMigrationsFrom(__DIR__ . '/../migrations');
+        }
     }
 
     /**
@@ -22,6 +26,12 @@ class TagsServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        $this->publishes([
+            __DIR__ . '/../migrations' => database_path('migrations'),
+        ], 'asseco-tags');
+
+        $this->publishes([
+            __DIR__ . '/../config/asseco-tags.php' => config_path('asseco-tags.php'),
+        ], 'asseco-tags');
     }
 }
