@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Asseco\Tags;
 
+use Asseco\Tags\App\Contracts\Tag;
 use Illuminate\Support\ServiceProvider;
 
 class TagsServiceProvider extends ServiceProvider
@@ -16,7 +17,7 @@ class TagsServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__ . '/../config/asseco-tags.php', 'asseco-tags');
         $this->loadRoutesFrom(__DIR__ . '/../routes/api.php');
 
-        if (config('asseco-tags.runs_migrations')) {
+        if (config('asseco-tags.migrations.run')) {
             $this->loadMigrationsFrom(__DIR__ . '/../migrations');
         }
     }
@@ -33,5 +34,7 @@ class TagsServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../config/asseco-tags.php' => config_path('asseco-tags.php'),
         ], 'asseco-tags');
+
+        $this->app->bind(Tag::class, config('asseco-tags.models.tag'));
     }
 }

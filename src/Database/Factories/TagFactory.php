@@ -9,12 +9,10 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 class TagFactory extends Factory
 {
-    /**
-     * The name of the factory's corresponding model.
-     *
-     * @var string
-     */
-    protected $model = Tag::class;
+    public function modelName()
+    {
+        return config('asseco-tags.models.tag');
+    }
 
     /**
      * Define the model's default state.
