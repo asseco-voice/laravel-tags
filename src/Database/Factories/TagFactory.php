@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Asseco\Tags\Database\Factories;
 
-use Asseco\Tags\App\Models\Tag;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class TagFactory extends Factory
