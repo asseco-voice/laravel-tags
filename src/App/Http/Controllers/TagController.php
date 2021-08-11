@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Asseco\Tags\App\Http\Controllers;
 
+use Asseco\Tags\App\Contracts\Tag as TagContract;
 use Asseco\Tags\App\Http\Requests\TagRequest;
 use Asseco\Tags\App\Models\Tag;
 use Exception;
@@ -11,13 +12,11 @@ use Illuminate\Http\JsonResponse;
 
 class TagController extends Controller
 {
-    public Tag $tag;
+    public TagContract $tag;
 
-    public function __construct()
+    public function __construct(TagContract $tag)
     {
-        $model = config('asseco-tags.tag_model');
-
-        $this->tag = new $model;
+        $this->tag = $tag;
     }
 
     /**

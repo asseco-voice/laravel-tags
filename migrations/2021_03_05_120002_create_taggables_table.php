@@ -17,8 +17,15 @@ class CreateTaggablesTable extends Migration
     {
         Schema::create('taggables', function (Blueprint $table) {
             $table->id();
-            $table->integer('tag_id')->unsigned();
-            $table->morphs('taggable');
+
+            if (config('asseco-tags.migrations.uuid')) {
+                $table->foreignUuid('tag_id')->constrained()->cascadeOnDelete();
+                $table->uuidMorphs('taggable');
+            } else {
+                $table->foreignId('tag_id')->constrained()->cascadeOnDelete();
+                $table->morphs('taggable');
+            }
+
             $table->timestamps();
 
             $table->unique(['tag_id', 'taggable_type', 'taggable_id']);

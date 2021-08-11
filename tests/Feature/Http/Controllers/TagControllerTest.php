@@ -4,12 +4,21 @@ declare(strict_types=1);
 
 namespace Asseco\Tags\Tests\Feature\Http\Controllers;
 
-use Asseco\Tags\App\Models\Tag;
+use Asseco\Tags\App\Contracts\Tag;
 use Asseco\Tags\Tests\TestCase;
 use Illuminate\Support\Str;
 
 class TagControllerTest extends TestCase
 {
+    protected Tag $tag;
+
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        $this->tag = app(Tag::class);
+    }
+
     /** @test */
     public function can_fetch_all_tag_fields()
     {
@@ -17,19 +26,19 @@ class TagControllerTest extends TestCase
             ->getJson(route('tags.index'))
             ->assertJsonCount(0);
 
-        Tag::factory()->count(5)->create();
+        $this->tag::factory()->count(5)->create();
 
         $this
             ->getJson(route('tags.index'))
             ->assertJsonCount(5);
 
-        $this->assertCount(5, Tag::all());
+        $this->assertCount(5, $this->tag::all());
     }
 
     /** @test */
     public function rejects_creating_tag_with_invalid_name()
     {
-        $request = Tag::factory()->make([
+        $request = $this->tag::factory()->make([
             'name' => Str::random(101),
         ])->toArray();
 
@@ -41,7 +50,7 @@ class TagControllerTest extends TestCase
     /** @test */
     public function creates_tag()
     {
-        $request = Tag::factory()->make()->toArray();
+        $request = $this->tag::factory()->make()->toArray();
 
         $this
             ->postJson(route('tags.store'), $request)
@@ -51,13 +60,13 @@ class TagControllerTest extends TestCase
                 'color' => $request['color'],
             ]);
 
-        $this->assertCount(1, Tag::all());
+        $this->assertCount(1, $this->tag::all());
     }
 
     /** @test */
     public function can_return_tag_by_id()
     {
-        Tag::factory()->count(5)->create();
+        $this->tag::factory()->count(5)->create();
 
         $this
             ->getJson(route('tags.show', 3))
@@ -67,7 +76,7 @@ class TagControllerTest extends TestCase
     /** @test */
     public function can_update_tag()
     {
-        $tag = Tag::factory()->create();
+        $tag = $this->tag::factory()->create();
 
         $request = [
             'name' => 'updated_name',
@@ -85,14 +94,14 @@ class TagControllerTest extends TestCase
     /** @test */
     public function can_delete_tag()
     {
-        $tag = Tag::factory()->create();
+        $tag = $this->tag::factory()->create();
 
-        $this->assertCount(1, Tag::all());
+        $this->assertCount(1, $this->tag::all());
 
         $this
             ->deleteJson(route('tags.destroy', $tag->id))
             ->assertOk();
 
-        $this->assertCount(0, Tag::all());
+        $this->assertCount(0, $this->tag::all());
     }
 }
