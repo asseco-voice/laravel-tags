@@ -15,14 +15,16 @@ In order to use the package, migrate the tables with ``artisan migrate``
 and add `Taggable` trait to model you'd like to have tag support on.
 
 Standard CRUD endpoints are exposed for tag administration. Due to the fact that 
-tags are a morph relation, you have to provide your own controllers for attaching/detaching 
+tags are a polymorphic relation, you have to provide your own controllers for attaching/detaching 
 those tags to taggable models.
 
 Example:
 
 ```php
+// Routes
 Route::post('models/{model}/tags', [ModelTagController::class, 'store']);
 
+// Controller
 public function store(Request $request, Model $model): JsonResponse
 {
     $ids = Arr::get($request->validated(), 'tag_ids', []);
@@ -32,3 +34,9 @@ public function store(Request $request, Model $model): JsonResponse
     return response()->json('success');
 }
 ```
+
+# Extending the package
+
+Publishing the configuration will enable you to change package models as
+well as controlling how migrations behave. If extending the model, make sure
+you're extending the original model in your implementation.
