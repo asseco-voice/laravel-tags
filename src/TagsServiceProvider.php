@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Asseco\Tags;
 
 use Asseco\Tags\App\Contracts\Tag;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
 class TagsServiceProvider extends ServiceProvider
@@ -36,5 +37,7 @@ class TagsServiceProvider extends ServiceProvider
         ], 'asseco-tags');
 
         $this->app->bind(Tag::class, config('asseco-tags.models.tag'));
+
+        Route::model('tag', get_class(app(Tag::class)));
     }
 }
