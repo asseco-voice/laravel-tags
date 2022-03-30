@@ -17,8 +17,9 @@ class TagManyController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param TagManyRequest $request
+     * @param  TagManyRequest  $request
      * @return JsonResponse
+     *
      * @throws Exception
      */
     public function store(TagManyRequest $request): JsonResponse

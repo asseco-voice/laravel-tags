@@ -32,7 +32,7 @@ class TagController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param TagRequest $request
+     * @param  TagRequest  $request
      * @return JsonResponse
      */
     public function store(TagRequest $request): JsonResponse
@@ -45,7 +45,7 @@ class TagController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param Tag $tag
+     * @param  Tag  $tag
      * @return JsonResponse
      */
     public function show(Tag $tag): JsonResponse
@@ -56,8 +56,8 @@ class TagController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param TagRequest $request
-     * @param Tag $tag
+     * @param  TagRequest  $request
+     * @param  Tag  $tag
      * @return JsonResponse
      */
     public function update(TagRequest $request, Tag $tag): JsonResponse
@@ -70,8 +70,9 @@ class TagController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Tag $tag
+     * @param  Tag  $tag
      * @return JsonResponse
+     *
      * @throws Exception
      */
     public function destroy(Tag $tag): JsonResponse
