@@ -15,8 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('api')
-    ->middleware('api')
+Route::prefix(config('asseco-tags.routes.prefix'))
+    ->middleware(config('asseco-tags.routes.middleware'))
     ->group(function () {
         Route::apiResource('tags', TagController::class);
 
