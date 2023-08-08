@@ -40,7 +40,6 @@ class TagManyController extends Controller
         }
 
         foreach ($validated['ids'] as $modelId) {
-
             /** @var Taggable $model */
             $model = $modelClass::query()->find($modelId);
 
