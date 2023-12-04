@@ -27,6 +27,7 @@ class TagRequest extends FormRequest
     {
         return [
             'name'  => 'required|string|max:50|unique:tags,name' . ($this->tag ? ',' . $this->tag->id : null),
+            'is_system'  => 'boolean',
             'color' => 'nullable|string|max:30',
         ];
     }
