@@ -9,6 +9,7 @@ use Asseco\Tags\App\Http\Requests\TagRequest;
 use Asseco\Tags\App\Models\Tag;
 use Exception;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class TagController extends Controller
 {
@@ -22,10 +23,16 @@ class TagController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  Request  $request
      * @return JsonResponse
      */
-    public function index(): JsonResponse
+    public function index(Request $request): JsonResponse
     {
+        $isSystem = $request->input('is_system');
+        if ($isSystem !== null) {
+            return response()->json($this->tag::where('is_system', filter_var($isSystem, FILTER_VALIDATE_BOOLEAN))->get());
+        }
+
         return response()->json($this->tag::all());
     }
 
