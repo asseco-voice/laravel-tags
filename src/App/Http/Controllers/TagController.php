@@ -23,7 +23,7 @@ class TagController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param Request $request
+     * @param  Request  $request
      * @return JsonResponse
      */
     public function index(Request $request): JsonResponse
@@ -32,6 +32,7 @@ class TagController extends Controller
         if ($isSystem !== null) {
             return response()->json($this->tag::where('is_system', filter_var($isSystem, FILTER_VALIDATE_BOOLEAN))->get());
         }
+
         return response()->json($this->tag::all());
     }
 
