@@ -26,9 +26,9 @@ class TagManyRequest extends FormRequest
     public function rules()
     {
         return [
-            'model'     => 'required|string',
-            'ids'       => 'required|array',
-            'tag_ids'   => 'required|array',
+            'model' => 'required|string',
+            'ids' => 'required|array',
+            'tag_ids' => 'required|array',
             'tag_ids.*' => 'exists:tags,id',
         ];
     }

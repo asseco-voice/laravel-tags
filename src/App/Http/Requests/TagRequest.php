@@ -26,8 +26,8 @@ class TagRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'  => 'required|string|max:50|unique:tags,name' . ($this->tag ? ',' . $this->tag->id : null),
-            'is_system'  => 'boolean',
+            'name' => 'required|string|max:50|unique:tags,name' . ($this->tag ? ',' . $this->tag->id : null),
+            'is_system' => 'boolean',
             'color' => 'nullable|string|max:30',
         ];
     }
