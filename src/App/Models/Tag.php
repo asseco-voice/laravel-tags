@@ -22,6 +22,8 @@ class Tag extends Model implements \Asseco\Tags\App\Contracts\Tag
 
     public function models(string $class): MorphToMany
     {
-        return $this->morphedByMany($class, 'taggable')->withTimestamps();
+        return $this->morphedByMany($class, 'taggable')
+            ->using(TaggablePivot::class)
+            ->withTimestamps();
     }
 }

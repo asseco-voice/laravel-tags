@@ -2,6 +2,7 @@
 
 use Asseco\BlueprintAudit\App\MigrationMethodPicker;
 use Asseco\Tags\App\Models\Tag;
+use Asseco\Tags\App\Models\TaggablePivot;
 
 return [
 
@@ -10,6 +11,7 @@ return [
      */
     'models' => [
         'tag' => Tag::class,
+        'taggablePivot' => TaggablePivot::class
     ],
 
     'migrations' => [
