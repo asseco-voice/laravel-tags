@@ -55,7 +55,7 @@ class TagControllerTest extends TestCase
         $this
             ->postJson(route('tags.store'), $request)
             ->assertJsonFragment([
-                'id'   => 1,
+                'id' => 1,
                 'name' => $request['name'],
                 'color' => $request['color'],
             ]);
