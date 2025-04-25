@@ -2,6 +2,7 @@
 
 use Asseco\BlueprintAudit\App\MigrationMethodPicker;
 use Asseco\Tags\App\Models\Tag;
+use Asseco\Tags\App\Models\TaggablePivot;
 
 return [
 
@@ -10,6 +11,7 @@ return [
      */
     'models' => [
         'tag' => Tag::class,
+        'taggablePivot' => TaggablePivot::class,
     ],
 
     'migrations' => [
@@ -17,7 +19,7 @@ return [
         /**
          * UUIDs as primary keys.
          */
-        'uuid'       => false,
+        'uuid' => false,
 
         /**
          * Timestamp types.
@@ -30,11 +32,11 @@ return [
          * Should the package run the migrations. Set to false if you're publishing
          * and changing default migrations.
          */
-        'run'        => true,
+        'run' => true,
     ],
 
     'routes' => [
-        'prefix'     => 'api',
+        'prefix' => 'api',
         'middleware' => ['api'],
     ],
 ];
