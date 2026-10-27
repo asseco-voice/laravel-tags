@@ -19,7 +19,7 @@ class TagControllerTest extends TestCase
         $this->tag = app(Tag::class);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function can_fetch_all_tag_fields()
     {
         $this
@@ -35,7 +35,7 @@ class TagControllerTest extends TestCase
         $this->assertCount(5, $this->tag::all());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function rejects_creating_tag_with_invalid_name()
     {
         $request = $this->tag::factory()->make([
@@ -47,7 +47,7 @@ class TagControllerTest extends TestCase
             ->assertStatus(422);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function creates_tag()
     {
         $request = $this->tag::factory()->make()->toArray();
@@ -63,7 +63,7 @@ class TagControllerTest extends TestCase
         $this->assertCount(1, $this->tag::all());
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function can_return_tag_by_id()
     {
         $this->tag::factory()->count(5)->create();
@@ -73,7 +73,7 @@ class TagControllerTest extends TestCase
             ->assertJsonFragment(['id' => 3]);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function can_update_tag()
     {
         $tag = $this->tag::factory()->create();
@@ -91,7 +91,7 @@ class TagControllerTest extends TestCase
         $this->assertEquals($request['name'], $tag->refresh()->name);
     }
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function can_delete_tag()
     {
         $tag = $this->tag::factory()->create();
